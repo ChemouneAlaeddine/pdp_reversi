@@ -1,0 +1,38 @@
+\begin{tikzpicture}[node distance=2.5cm,auto,>=stealth']
+
+	%Nom en haut
+    \node[] (utilisateur) {utilisateur};
+    \node[right = of utilisateur] (interface) {interface};
+    \node[right = of interface] (jeu) {jeu};
+    \node[right = of jeu] (IA) {IA};
+    
+    
+  	%Trait vertical
+    \node[below of=utilisateur, node distance=12cm] (utilisateur_ground) {};
+    \node[below of=interface, node distance=12cm] (interface_ground) {};
+    \node[below of=jeu, node distance=12cm] (jeu_ground) {};
+    \node[below of=IA, node distance=12cm] (IA_ground) {};
+    
+    \draw (utilisateur) -- (utilisateur_ground);
+    \draw (interface) -- (interface_ground);
+    \draw (jeu) -- (jeu_ground);
+    \draw (IA) -- (IA_ground);
+    
+    %Ligne
+    \draw[->] ($(utilisateur)!0.08!(utilisateur_ground)$) -- node[above,scale=0.8,midway]{Demande l'affichage} node[below,scale=0.8,midway]{du plateau} ($(interface)!0.08!(interface_ground)$);
+    \draw[->] ($(interface)!0.15!(interface_ground)$) -- node[above,scale=0.8,midway]{Demande la position} node[below,scale=0.8,midway]{des pions} ($(jeu)!0.15!(jeu_ground)$);
+    \draw[<-] ($(interface)!0.25!(interface_ground)$) -- node[above,scale=0.8,midway]{Renvoie la position}node[below,scale=0.8,midway]{des pions actuels} ($(jeu)!0.25!(jeu_ground)$);
+    \draw[<-] ($(utilisateur)!0.32!(utilisateur_ground)$) -- node[above,scale=0.8,midway]{Affiche le plateau}node[below,scale=0.8,midway]{et attend le coup} ($(interface)!0.32!(interface_ground)$);
+    \draw[->] ($(utilisateur)!0.42!(utilisateur_ground)$) -- node[above,scale=0.8,midway]{Rentre le coup}($(jeu)!0.42!(jeu_ground)$);
+    \draw[<-] ($(utilisateur)!0.50!(utilisateur_ground)$) -- node[above,scale=0.8,midway]{Coup non OK}node[below,scale=0.8,midway]{redemande le coup}($(jeu)!0.50!(jeu_ground)$);
+    \draw[->] ($(utilisateur)!0.60!(utilisateur_ground)$) -- node[above,scale=0.8,midway]{Rentre le coup}($(jeu)!0.60!(jeu_ground)$);
+    \draw[<-] ($(interface)!0.68!(interface_ground)$) -- node[above,scale=0.8,midway]{Coup OK}($(jeu)!0.68!(jeu_ground)$);
+    \draw[<-] ($(utilisateur)!0.76!(utilisateur_ground)$) -- node[above,scale=0.8,midway]{Actualise l'affichage}node[below,scale=0.8,midway]{et attend le coup} ($(interface)!0.76!(interface_ground)$);
+    \draw[->] ($(jeu)!0.76!(jeu_ground)$) --
+node[above,scale=0.8,midway]{Demande de coup}node[below,scale=0.8,midway]{} ($(IA)!0.76!(IA_ground)$);
+	\draw[<-] ($(jeu)!0.84!(jeu_ground)$) -- node[above,scale=0.8,midway]{Rentre le coup}($(IA)!0.84!(IA_ground)$);
+	\draw[<-] ($(interface)!0.91!(interface_ground)$) -- node[above,scale=0.8,midway]{Coup OK}($(jeu)!0.91!(jeu_ground)$);
+    \draw[<-] ($(utilisateur)!0.97!(utilisateur_ground)$) -- node[above,scale=0.8,midway]{Actualise l'affichage}node[below,scale=0.8,midway]{et attend le coup} ($(interface)!0.97!(interface_ground)$);
+    
+    
+\end{tikzpicture}
